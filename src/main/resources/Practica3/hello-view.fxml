@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.ListView?>
+<VBox alignment="CENTER" spacing="15.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Practica3.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <Label text="Analizador Léxico" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+    <HBox alignment="CENTER" spacing="10.0">
+        <TextField fx:id="txtEntrada" promptText="Ingresa instrucción (ej. float dato2=123.5f;)" prefWidth="350.0" />
+        <Button fx:id="btnAnalizar" text="Analizar" onAction="#analizarCodigo" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;"/>
+    </HBox>
+
+    <TableView fx:id="tablaTokens" prefHeight="350.0" prefWidth="500.0">
+        <columns>
+            <TableColumn fx:id="columnaLexema" prefWidth="250.0" text="LEXEMA" />
+            <TableColumn fx:id="columnaTipo" prefWidth="250.0" text="TIPO DE TOKEN" />
+        </columns>
+    </TableView>
+
+    <Label fx:id="lblTotalTokens" text="Total Tokens: 0" style="-fx-font-size: 14px;" />
+
+    <!-- pilas -->
+    <HBox spacing="5.0" alignment="CENTER" style="-fx-padding: 10;">
+
+        <VBox alignment="TOP_CENTER" spacing="2">
+            <Label text="P. Reservadas" style="-fx-font-size: 10px; -fx-font-weight: bold;"/>
+            <ListView fx:id="listaReservadas" prefHeight="150" prefWidth="80"/>
+        </VBox>
+
+        <VBox alignment="TOP_CENTER" spacing="2">
+            <Label text="IDs" style="-fx-font-size: 10px; -fx-font-weight: bold;"/>
+            <ListView fx:id="listaIdentificadores" prefHeight="150" prefWidth="80"/>
+        </VBox>
+
+        <VBox alignment="TOP_CENTER" spacing="2">
+            <Label text="Literales" style="-fx-font-size: 10px; -fx-font-weight: bold;"/>
+            <ListView fx:id="listaLiterales" prefHeight="150" prefWidth="80"/>
+        </VBox>
+
+        <VBox alignment="TOP_CENTER" spacing="2">
+            <Label text="Operadores" style="-fx-font-size: 10px; -fx-font-weight: bold;"/>
+            <ListView fx:id="listaOperadores" prefHeight="150" prefWidth="80"/>
+        </VBox>
+
+        <VBox alignment="TOP_CENTER" spacing="2">
+            <Label text="Delimitadores" style="-fx-font-size: 10px; -fx-font-weight: bold;"/>
+            <ListView fx:id="listaDelimitadores" prefHeight="150" prefWidth="80"/>
+        </VBox>
+
+        <VBox alignment="TOP_CENTER" spacing="2">
+            <Label text="Comentarios" style="-fx-font-size: 10px; -fx-font-weight: bold;"/>
+            <ListView fx:id="listaComentarios" prefHeight="150" prefWidth="80"/>
+        </VBox>
+
+    </HBox>
+
+</VBox>
