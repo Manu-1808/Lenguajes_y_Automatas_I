@@ -15,6 +15,7 @@ import java.util.Stack;
 
 public class HelloController {
 
+    public Button btnAnalizar;
     @FXML
     private TextField txtEntrada;
     @FXML
