@@ -56,7 +56,7 @@ public class Validador {
     }
 
     public boolean esBoolean (String cadena){
-        Pattern patronBoolean = Pattern.compile("^(true|false)$");
+        Pattern patronBoolean = Pattern.compile("(true|false)");
 
         Matcher comparador = patronBoolean.matcher(cadena);
 
@@ -80,7 +80,7 @@ public class Validador {
     }
 
     public boolean esInt(String cadena){
-        Pattern patronCadena = Pattern.compile("^[+-]?[0-9]+$");
+        Pattern patronCadena = Pattern.compile("[+-]?[0-9]+");
 
         Matcher comparador = patronCadena.matcher(cadena);
 
@@ -96,7 +96,7 @@ public class Validador {
     }
 
     public boolean esFloat (String cadena){
-        Pattern patronFloat= Pattern.compile("^-?[0-9]+\\.[0-9]+[fF]$");
+        Pattern patronFloat= Pattern.compile("-?[0-9]+\\.[0-9]+[fF]");
 
         Matcher mat = patronFloat.matcher(cadena);
 
@@ -113,7 +113,7 @@ public class Validador {
     }
 
     public boolean esDouble (String cadena){
-        Pattern patronDouble = Pattern.compile("^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?[dD]?$");
+        Pattern patronDouble = Pattern.compile("-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?[dD]?");
 
         Matcher mat = patronDouble.matcher(cadena);
 
@@ -130,7 +130,7 @@ public class Validador {
     }
 
     public boolean esLong(String cadena){
-        Pattern patronCadena = Pattern.compile("^[+-]?[0-9]+$");
+        Pattern patronCadena = Pattern.compile("[+-]?[0-9]+");
 
         Matcher comparador = patronCadena.matcher(cadena);
 
@@ -144,6 +144,14 @@ public class Validador {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    public boolean esComentario (String cadena){
+        Pattern patronComentario = Pattern.compile("^//.*$");
+
+        Matcher comparador = patronComentario.matcher(cadena);
+
+        return comparador.matches();
     }
 
     public boolean esDelimitador (char caracter){
