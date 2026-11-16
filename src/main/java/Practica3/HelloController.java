@@ -38,6 +38,8 @@ public class HelloController {
     private ListView<String> listaDelimitadores;
     @FXML
     private ListView<String> listaComentarios;
+    @FXML
+    private TableColumn<Token, Integer> columnaNumero;
 
     private final Analizador analizador = new Analizador();
 
@@ -46,6 +48,9 @@ public class HelloController {
 
         columnaLexema.setCellValueFactory(new PropertyValueFactory<>("palabra"));
         columnaTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+        columnaNumero.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getNumeroToken()).asObject()
+        );
     }
 
     private void llenarPila (Stack<String> pila, ListView<String> listaVisual){

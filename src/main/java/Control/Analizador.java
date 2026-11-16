@@ -27,13 +27,14 @@ public class Analizador {
                 palabra = lineaCodigo.substring(inicio, i);
 
                 if (val.esReservada(palabra)){
-                    tokens.add(new Token (palabra, "Palabra Reservada"));
+                    int numeroToken = Numero_token.obtenerID(palabra);
+                    tokens.add(new Token (palabra, "Palabra Reservada", numeroToken));
                     pilas.pilaReservadas.push(palabra);
                 } else if (val.esIdentificador(palabra)){
-                    tokens.add(new Token(palabra, "Identificador"));
+                    tokens.add(new Token(palabra, "Identificador", 57));
                     pilas.pilaIdentificadores.push(palabra);
                 } else {
-                    tokens.add(new Token(palabra, "Error Lexico"));
+                    tokens.add(new Token(palabra, "Error Lexico", -1));
                 }
             }
 
@@ -50,11 +51,20 @@ public class Analizador {
 
                 palabra = lineaCodigo.substring(inicio, i);
 
-                if (val.esInt(palabra) || val.esLong(palabra) || val.esFloat(palabra) || val.esDouble(palabra)){
-                    tokens.add(new Token (palabra, "Literal"));
+                if (val.esInt(palabra)){
+                    tokens.add(new Token(palabra, "Literal Int", 58));
+                    pilas.pilaLiterales.push(palabra);
+                } else if (val.esLong(palabra)){
+                    tokens.add(new Token(palabra, "Literal Long", 59));
+                    pilas.pilaLiterales.push(palabra);
+                } else if (val.esDouble(palabra)){
+                    tokens.add(new Token(palabra, "Literal Double", 60));
+                    pilas.pilaLiterales.push(palabra);
+                } else if (val.esFloat(palabra)){
+                    tokens.add(new Token(palabra, "Literal Float", 61));
                     pilas.pilaLiterales.push(palabra);
                 } else {
-                    tokens.add(new Token(palabra, "Error Lexico"));
+                    tokens.add(new Token(palabra, "Error Lexico", -1));
                 }
             }
 
@@ -72,13 +82,13 @@ public class Analizador {
                 palabra = lineaCodigo.substring(inicio, i);
 
                 if (val.esString(palabra)){
-                    tokens.add(new Token (palabra, "Literal String"));
+                    tokens.add(new Token (palabra, "Literal String", 64));
                     pilas.pilaLiterales.push(palabra);
                 } else if (val.esChar(palabra)){
-                    tokens.add(new Token(palabra, "Literal Char"));
+                    tokens.add(new Token(palabra, "Literal Char", 63));
                     pilas.pilaLiterales.push(palabra);
                 } else {
-                    tokens.add(new Token(palabra, "Error Lexico"));
+                    tokens.add(new Token(palabra, "Error Lexico", -1));
                 }
             }
 
@@ -88,12 +98,13 @@ public class Analizador {
                     i++;
                 }
                 palabra = lineaCodigo.substring(inicio, i);
-                tokens.add(new Token(palabra, "Comentario"));
+                tokens.add(new Token(palabra, "Comentario", 92));
                 pilas.pilaComentarios.push(palabra);
             }
 
             else if (val.esDelimitador(c)){
-                tokens.add(new Token(String.valueOf(c), "Delimitador"));
+                int numDelimitador = Numero_token.obtenerID(String.valueOf(c));
+                tokens.add(new Token(String.valueOf(c), "Delimitador", numDelimitador));
                 pilas.pilaDelimitadores.push(String.valueOf(c));
                 i++;
             }
@@ -108,7 +119,8 @@ public class Analizador {
                         i++;
                     }
                 }
-                tokens.add(new Token(operador, "Operador"));
+                int numeroOperador = Numero_token.obtenerID(String.valueOf(c));
+                tokens.add(new Token(operador, "Operador", numeroOperador));
                 pilas.pilaOperadores.push(operador);
                 i++;
             }

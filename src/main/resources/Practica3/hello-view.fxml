@@ -26,6 +26,7 @@
         <columns>
             <TableColumn fx:id="columnaLexema" prefWidth="250.0" text="LEXEMA" />
             <TableColumn fx:id="columnaTipo" prefWidth="250.0" text="TIPO DE TOKEN" />
+            <TableColumn fx:id="columnaNumero" prefWidth="150.0" text="NÚMERO TOKEN" />
         </columns>
     </TableView>
 
